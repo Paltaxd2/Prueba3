@@ -36,4 +36,32 @@ public class LibroControlador {
         Libro lib1 = libServ.save(libr1);
         return ResponseEntity.status(HttpStatus.CREATED).body(lib1);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Libro> acutualizarLibro(@PathVariable Integer id, @RequestBody Libro libr2) {
+        try {
+            Libro lib2 = libServ.findById(id);
+            lib2.setIsbn(libr2.getIsbn());
+            lib2.setTitulo(libr2.getTitulo());
+            lib2.setFechaIngreso(libr2.getFechaIngreso());
+            lib2.setAutor(lib2.getAutor());
+            lib2.setEditorial(libr2.getEditorial());
+            lib2.setAnioPublicacion(libr2.getAnioPublicacion());
+
+            libServ.save(lib2);
+            return ResponseEntity.ok(libr2);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Libro> buscarLibroEspecifico(@PathVariable Integer id) {
+        try {
+            Libro lib3 = libServ.findById(id);
+            return ResponseEntity.ok(lib3);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

@@ -20,4 +20,9 @@ public class LibroServicio {
     public Libro save(Libro lib){
         return libRepoInter.save(lib);
     }
+
+    // Buscar un Libro en especifico 
+    public Libro findById(Integer id){
+        return libRepoInter.findById(id).get();
+    }
 }
