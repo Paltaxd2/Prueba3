@@ -34,12 +34,13 @@ public class Libro {
     private LocalDate fechaIngreso; //Local date para evitar temas como las zonas horarias o la hora
 
     @Column(nullable = false)
-    private String editorial;
-
-    @Column(nullable = false)
     private int anioPublicacion; //Al ser solo el año , no es molesto usar int
 
     @ManyToOne
-    @JoinColumn(name = "id_autor")
+    @JoinColumn(name = "id_editorial", nullable = false)
+    private Editorial editorial;
+
+    @ManyToOne
+    @JoinColumn(name = "id_autor", nullable = false)
     private Autor autor;
 }
