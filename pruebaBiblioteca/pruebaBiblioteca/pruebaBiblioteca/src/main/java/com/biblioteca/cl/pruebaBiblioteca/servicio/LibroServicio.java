@@ -25,4 +25,14 @@ public class LibroServicio {
     public Libro findById(Integer id){
         return libRepoInter.findById(id).get();
     }
+
+    // Listar todos los libros
+    public List<Libro> findAll(){
+        return libRepoInter.findAll();
+    }
+
+    // Mandar Libros al gulag (Borrar Libros)
+    public void delete(Integer id){
+        libRepoInter.deleteById(id);
+    }
 }

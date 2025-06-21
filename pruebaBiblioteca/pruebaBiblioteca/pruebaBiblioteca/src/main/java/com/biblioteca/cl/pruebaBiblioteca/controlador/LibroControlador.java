@@ -64,4 +64,23 @@ public class LibroControlador {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    @GetMapping()
+    public ResponseEntity<List<Libro>> listarLibros() {
+        List<Libro> lib4 = libServ.findAll();
+        if(lib4.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(lib4);
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarLibro(@PathVariable Integer id){
+        try {
+            libServ.delete(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
