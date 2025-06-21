@@ -22,8 +22,8 @@ public class LibroServicio {
     }
 
     // Buscar un Libro en especifico 
-    public Libro findById(Integer id){
-        return libRepoInter.findById(id).get();
+    public Libro findById(Integer id_libro){
+        return libRepoInter.findById(id_libro).get();
     }
 
     // Listar todos los libros
@@ -31,8 +31,8 @@ public class LibroServicio {
         return libRepoInter.findAll();
     }
 
-    // Mandar Libros al gulag (Borrar Libros)
-    public void delete(Integer id){
-        libRepoInter.deleteById(id);
+    // Borra los Libros 1 por 1 segun su Id
+    public void delete(Integer id_libro){
+        libRepoInter.deleteById(id_libro);
     }
 }

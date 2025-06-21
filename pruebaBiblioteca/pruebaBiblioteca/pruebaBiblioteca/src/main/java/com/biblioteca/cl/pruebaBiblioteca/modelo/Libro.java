@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,7 @@ import lombok.Data;
 public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_libro;
 
     @Column(unique = true, length = 20, nullable = false)
     private String isbn;
@@ -32,11 +34,12 @@ public class Libro {
     private LocalDate fechaIngreso; //Local date para evitar temas como las zonas horarias o la hora
 
     @Column(nullable = false)
-    private String autor;
-
-    @Column(nullable = false)
     private String editorial;
 
     @Column(nullable = false)
     private int anioPublicacion; //Al ser solo el año , no es molesto usar int
+
+    @ManyToOne
+    @JoinColumn(name = "id_autor")
+    private Autor autor;
 }

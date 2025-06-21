@@ -37,14 +37,14 @@ public class LibroControlador {
         return ResponseEntity.status(HttpStatus.CREATED).body(lib1);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Libro> acutualizarLibro(@PathVariable Integer id, @RequestBody Libro libr2) {
+    @PutMapping("/{id_libro}")
+    public ResponseEntity<Libro> acutualizarLibro(@PathVariable Integer id_libro, @RequestBody Libro libr2) {
         try {
-            Libro lib2 = libServ.findById(id);
+            Libro lib2 = libServ.findById(id_libro);
             lib2.setIsbn(libr2.getIsbn());
             lib2.setTitulo(libr2.getTitulo());
             lib2.setFechaIngreso(libr2.getFechaIngreso());
-            lib2.setAutor(lib2.getAutor());
+            lib2.setAutor(libr2.getAutor());
             lib2.setEditorial(libr2.getEditorial());
             lib2.setAnioPublicacion(libr2.getAnioPublicacion());
 
@@ -55,10 +55,10 @@ public class LibroControlador {
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Libro> buscarLibroEspecifico(@PathVariable Integer id) {
+    @GetMapping("/{id_libro}")
+    public ResponseEntity<Libro> buscarLibroEspecifico(@PathVariable Integer id_libro) {
         try {
-            Libro lib3 = libServ.findById(id);
+            Libro lib3 = libServ.findById(id_libro);
             return ResponseEntity.ok(lib3);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
@@ -74,10 +74,10 @@ public class LibroControlador {
         return ResponseEntity.ok(lib4);
     }
     
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarLibro(@PathVariable Integer id){
+    @DeleteMapping("/{id_libro}")
+    public ResponseEntity<?> eliminarLibro(@PathVariable Integer id_libro){
         try {
-            libServ.delete(id);
+            libServ.delete(id_libro);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
